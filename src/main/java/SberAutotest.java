@@ -2,27 +2,31 @@ import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.ArrayList;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
 public class SberAutotest {
+    public static Properties properties = AppProperties.getInstance().getProperties();
     private static WebDriver driver;
-    private String baseUrl;
+    private static String baseUrl;
 
     @BeforeClass
     public static void setup() throws Exception{
-        System.setProperty("webdriver.chrome.driver","drv/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", properties.getProperty("webdriver.chrome.driver"));
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.get("https://www.sberbank.ru/ru/person");
+        baseUrl = properties.getProperty("app.url");
+        driver.get(baseUrl);
     }
 
     @Test
@@ -74,7 +78,7 @@ public class SberAutotest {
     public void tearDown() throws Exception {
         driver.quit();
     }
-
+    //Ввод значения в текстовое поле
     private void fillField(By locator, String value){
         driver.findElement(locator).clear();
         driver.findElement(locator).sendKeys(value);
@@ -89,6 +93,19 @@ public class SberAutotest {
         actions.click();
         actions.sendKeys(value);
         actions.build().perform();
+    }
+    //Проверка наличия элемента
+    protected boolean isElementPresent(By by) {
+        try {
+            driver.findElement(by);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+    //Проверка сравнивает значение текста у поля ввода со строковой перменной
+    protected void checkFillField(String value, By locator) {
+        assertEquals(value, driver.findElement(locator).getAttribute("value"));
     }
 
 }
