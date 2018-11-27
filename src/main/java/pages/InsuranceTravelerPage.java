@@ -1,46 +1,66 @@
-package Pages;
+package pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import steps.BaseSteps;
 
 public class InsuranceTravelerPage extends BasePage {
     @FindBy(xpath = "(//DIV[@ng-click='setProdProg(prodProg)'])[1]")
-    WebElement minimun;
+    public WebElement minimun;
 
     @FindBy(xpath = "//SPAN[@ng-click='save()'][text()='Оформить']")
-    WebElement toIssue;
+    public WebElement toIssue;
 
     @FindBy(name = "insured0_surname")
-    WebElement insuredSurname;
+    public WebElement insuredSurname;
 
     @FindBy(name = "insured0_name")
-    WebElement insuredName;
+    public WebElement insuredName;
+
+    @FindBy(name = "insured0_birthDate")
+    public WebElement  insuredBirthDate;
+
+    @FindBy(name = "surname")
+    public WebElement surname;
+
+    @FindBy(name = "name")
+    public WebElement name;
 
     @FindBy(name = "middlename")
-    WebElement middlename;
+    public WebElement middlename;
 
     @FindBy(xpath = "(//INPUT[@ng-model='formdata.insurer.GENDER'])[1]")
-    WebElement gender;
+    public WebElement gender;
 
     @FindBy(name = "birthDate")
-    WebElement birthDate;
+    public WebElement birthDate;
 
     @FindBy(xpath = "//INPUT[@ng-model='formdata.insurer.documentList[0].DOCSERIES']")
-    WebElement docSeries;
+    public WebElement docSeries;
 
     @FindBy(xpath = "//INPUT[@ng-model='formdata.insurer.documentList[0].DOCNUMBER']")
-    WebElement docNumber;
+    public WebElement docNumber;
 
     @FindBy(name = "issueDate")
-    WebElement issueDate;
+    public WebElement issueDate;
 
     @FindBy(name = "issuePlace")
-    WebElement issuePlace;
+    public WebElement issuePlace;
 
     @FindBy(xpath = "//SPAN[@ng-click='save()'][text()='Продолжить']")
-    WebElement keepOne;
+    public WebElement keepOne;
 
     @FindBy(xpath = "//DIV[@ng-show='tryNext && myForm.$invalid'][text()='Заполнены не все обязательные поля']")
-    WebElement checkAllField;
+    public WebElement checkAllField;
 
+    public InsuranceTravelerPage (){
+        PageFactory.initElements(BaseSteps.getDriver(),this);
+    }
+
+    public InsuranceTravelerPage(WebDriver driver){
+        PageFactory.initElements(driver, this);
+        this.driver = driver;
+    }
 }

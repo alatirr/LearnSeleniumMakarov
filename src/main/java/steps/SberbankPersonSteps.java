@@ -1,4 +1,5 @@
-package Steps;
+package steps;
 
 public class SberbankPersonSteps {
+
 }

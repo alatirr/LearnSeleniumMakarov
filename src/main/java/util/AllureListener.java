@@ -1,8 +1,8 @@
-package my.company.util;
+package util;
 
-import my.company.steps.BaseSteps;
 import org.junit.runner.notification.Failure;
 import ru.yandex.qatools.allure.junit.AllureRunListener;
+import steps.BaseSteps;
 
 /**
  * Created by 777 on 08.05.2017.
