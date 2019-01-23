@@ -1,12 +1,12 @@
-package pages;
+package ru.autotests.pages;
 
+import ru.autotests.steps.BaseSteps;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
-import steps.BaseSteps;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 
 public class BasePage {
 
-    WebDriver driver;
+    public WebDriver driver;
 
     public BasePage() {
         PageFactory.initElements(BaseSteps.getDriver(), this);
@@ -57,7 +57,8 @@ public class BasePage {
 
     //Проверка сравнивает значение текста у поля ввода со строковой перменной
     public void checkFillField(String value, WebElement element) {
-        assertEquals(value, element.getAttribute("value"));
+        String sss = element.getAttribute("value");
+        assertEquals(value, sss);
     }
 
     //Провека отметки элемента
@@ -68,6 +69,11 @@ public class BasePage {
     //Проверка доступности элемента
     public void checkEnabledElement(boolean value, WebElement element) {
         assertEquals(value, element.isEnabled());
+    }
+
+    //Проверка отображения элемента
+    public void checkDisplayedElement(boolean value, WebElement element) {
+        assertEquals(value, element.isDisplayed());
     }
 
     //Указываем селениуму, на какую вкладку переключиться

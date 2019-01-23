@@ -1,19 +1,28 @@
-import org.junit.After;
-import org.junit.BeforeClass;
+package ru.autotests.steps;
+
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import properties.AppProperties;
+import ru.autotests.properties.AppProperties;
+import ru.yandex.qatools.allure.annotations.Attachment;
 
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class BaseTest {
+public class BaseSteps {
     public static Properties properties = AppProperties.getInstance().getProperties();
     protected static WebDriver driver;
     protected static String baseUrl;
 
-    @BeforeClass
+    public static WebDriver getDriver(){
+        return driver;
+    }
+
+    @Before
     public static void setup() throws Exception{
         switch (properties.getProperty("browser")){
             case "firefox":
@@ -38,5 +47,12 @@ public class BaseTest {
     public void tearDown() throws Exception {
         driver.quit();
     }
+
+    @Attachment(type = "image/png", value = "Screenshot")
+    public static byte[] takeScreenshot() {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
+
+
 
 }

@@ -1,4 +1,4 @@
-package steps;
+package ru.autotests.steps;
 
 public class InsuranceTravelerSteps {
 }

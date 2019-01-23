@@ -1,11 +1,18 @@
-package steps;
+package ru.autotests.steps;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.BasePage;
+import org.openqa.selenium.support.PageFactory;
+import ru.autotests.pages.BasePage;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class BaseStepsMethods {
+public class BaseStepsMethods extends BaseSteps {
+
+    public BaseStepsMethods() throws Exception {
+        setup();
+        PageFactory.initElements(BaseSteps.getDriver(), this);
+    }
+
     //field - название поля для отчета, value - значение,
     @Step("поле {0} заполняется значением {1}")
     public void fillField(String field, String value, WebElement element){
@@ -42,8 +49,13 @@ public class BaseStepsMethods {
         new BasePage().checkEnabledElement(value, element);
     }
 
+    @Step("Проверка отображения элемента {0}")
+    public void checkDisplayedElement(String field, boolean value, WebElement element){
+        new BasePage().checkDisplayedElement(value, element);
+    }
+
     @Step("Переключаемся на вкладку {0}")
-    public void swichTab(int numberTab, WebDriver driver){
+    public void swichTab(int numberTab){
         new BasePage().swichTab(numberTab, driver);
     }
 

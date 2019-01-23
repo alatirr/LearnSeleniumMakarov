@@ -1,4 +1,4 @@
-package properties;
+package ru.autotests.properties;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -9,6 +9,7 @@ public class AppProperties {
 
     private static AppProperties INSTANCE = null;
 
+    //Считываем файл ресурсов
     private AppProperties(){
         System.setProperty("environment", "application");
         try {

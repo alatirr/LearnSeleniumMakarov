@@ -1,11 +1,11 @@
-package util;
+package ru.autotests.util;
 
 import org.junit.runner.notification.Failure;
 import ru.yandex.qatools.allure.junit.AllureRunListener;
-import steps.BaseSteps;
+import ru.autotests.steps.BaseSteps;
 
 /**
- * Created by 777 on 08.05.2017.
+ * Created by Владимир on 17.11.2018.
  */
 public class AllureListener extends AllureRunListener {
 
