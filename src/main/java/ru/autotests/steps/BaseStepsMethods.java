@@ -4,13 +4,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import ru.autotests.pages.BasePage;
+import ru.autotests.scenario.ScenarioHooks;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class BaseStepsMethods extends BaseSteps {
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class BaseStepsMethods {
 
     public BaseStepsMethods() throws Exception {
-        setup();
-        PageFactory.initElements(BaseSteps.getDriver(), this);
+        PageFactory.initElements(ScenarioHooks.getDriver(), this);
     }
 
     //field - название поля для отчета, value - значение,
@@ -56,7 +60,7 @@ public class BaseStepsMethods extends BaseSteps {
 
     @Step("Переключаемся на вкладку {0}")
     public void swichTab(int numberTab){
-        new BasePage().swichTab(numberTab, driver);
+        new BasePage().swichTab(numberTab, ScenarioHooks.getDriver());
     }
 
 
@@ -73,13 +77,34 @@ public class BaseStepsMethods extends BaseSteps {
 //                actualTitle, expectedTitle), actualTitle.contains(expectedTitle));
 //    }
 //
-//    @Step("заполняются поля")
-//    public void fillFields(HashMap<String, String> fields){
-//        fields.forEach((k, v)-> fillField(k,v));
-//    }
-//
-//    @Step("поля заполнены верно")
-//    public void checkFillFields(HashMap<String, String> fields){
-//        fields.forEach((k, v)-> checkFillField(k,v));
-//    }
+
+    @Step("Заполнение полей")
+    public void fillFields(Map<String, String> arg,  List<WebElement> list) {
+        int i = 0;
+        for (Map.Entry<String, String> entry : arg.entrySet()) {
+            fillField(entry.getKey(), entry.getValue(), list.get(i));
+            i++;
+        }
+    }
+
+    @Step("Проверка полей")
+    public void checkFillFields (Map<String, String> arg, List<WebElement> list){
+        int i = 0;
+        for(Map.Entry<String, String> entry : arg.entrySet()){
+            checkFillField(entry.getKey(),entry.getValue(), list.get(i));
+            i++;
+        }
+    }
+
+    @Step("Проверка селектора")
+    public void checkSelectedElement(Map<String, String> arg, WebElement element){
+        for(Map.Entry<String, String> entry : arg.entrySet()){
+            checkSelectedElement (entry.getKey(), Boolean.parseBoolean(entry.getValue()), element);
+        }
+    }
+
+    @Step("поля заполнены верно")
+    public void checkFillFields(HashMap<String, String> fields){
+        //fields.forEach((k, v)-> checkFillField(k,v));
+    }
 }

@@ -1,4 +1,4 @@
-package ru.autotests.steps;
+package ru.autotests.scenario;
 
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -13,7 +13,7 @@ import ru.yandex.qatools.allure.annotations.Attachment;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class BaseSteps {
+public class ScenarioHooks {
     public static Properties properties = AppProperties.getInstance().getProperties();
     protected static WebDriver driver;
     protected static String baseUrl;

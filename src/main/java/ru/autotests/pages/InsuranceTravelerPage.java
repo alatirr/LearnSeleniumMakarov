@@ -1,6 +1,6 @@
 package ru.autotests.pages;
 
-import ru.autotests.steps.BaseSteps;
+import ru.autotests.scenario.ScenarioHooks;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -59,7 +59,7 @@ public class InsuranceTravelerPage extends BasePage {
     public WebElement checkAllField;
 
     public InsuranceTravelerPage (){
-        PageFactory.initElements(BaseSteps.getDriver(),this);
+        PageFactory.initElements(ScenarioHooks.getDriver(),this);
     }
 
     public InsuranceTravelerPage(WebDriver driver){

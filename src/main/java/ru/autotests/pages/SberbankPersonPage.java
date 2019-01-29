@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import ru.autotests.steps.BaseSteps;
+import ru.autotests.scenario.ScenarioHooks;
 
 public class SberbankPersonPage extends BasePage {
     //Кнопка страхование
@@ -21,7 +21,7 @@ public class SberbankPersonPage extends BasePage {
     public WebElement makeOnline;
 
     public SberbankPersonPage(){
-        PageFactory.initElements( BaseSteps.getDriver(),this);
+        PageFactory.initElements( ScenarioHooks.getDriver(),this);
     }
 
     public SberbankPersonPage(WebDriver driver){

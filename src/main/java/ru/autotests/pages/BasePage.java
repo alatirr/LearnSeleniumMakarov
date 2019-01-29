@@ -1,6 +1,6 @@
 package ru.autotests.pages;
 
-import ru.autotests.steps.BaseSteps;
+import ru.autotests.scenario.ScenarioHooks;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +17,7 @@ public class BasePage {
     public WebDriver driver;
 
     public BasePage() {
-        PageFactory.initElements(BaseSteps.getDriver(), this);
+        PageFactory.initElements(ScenarioHooks.getDriver(), this);
     }
 
     public BasePage(WebDriver driver){
